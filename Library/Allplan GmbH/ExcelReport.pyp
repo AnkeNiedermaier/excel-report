@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Element>
     <Script>
-        <Name>AllplanTools\ExcelReport.py</Name>
+        <Name>allplan_gmbh\ExcelReport.py</Name>
         <Title>ExcelReport</Title>
         <Version>1.0</Version>
         <Interactor>True</Interactor>
