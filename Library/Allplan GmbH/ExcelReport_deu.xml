@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Element>
+    <StringTable>Allplan PythonParts string table</StringTable>
+<!-- for pyp file -->
+    <Item>
+        <TextId>1001</TextId>
+        <Text>Report Art</Text>
+    </Item>
+    <Item>
+        <TextId>1002</TextId>
+        <Text>Report Objektparameter</Text>
+    </Item>
+    <Item>
+        <TextId>1003</TextId>
+        <Text>Report Objektmengen (QTO)</Text>
+    </Item>
+    <Item>
+        <TextId>1004</TextId>
+        <Text>Excel Datei</Text>
+    </Item>
+    <Item>
+        <TextId>1005</TextId>
+        <Text>Excel Tabelle</Text>
+    </Item>
+    <Item>
+        <TextId>1006</TextId>
+        <Text>neu</Text>
+    </Item>
+    <Item>
+        <TextId>1007</TextId>
+        <Text>öffnen</Text>
+    </Item>
+    <Item>
+        <TextId>1008</TextId>
+        <Text>Tabelle wählen</Text>
+    </Item>
+    <Item>
+        <TextId>1009</TextId>
+        <Text>Pfad wählen</Text>
+    </Item>
+    <Item>
+        <TextId>1010</TextId>
+        <Text>Tabellenblatt</Text>
+    </Item>
+    <Item>
+        <TextId>1011</TextId>
+        <Text>Start in Zeile</Text>
+    </Item>
+    <Item>
+        <TextId>1012</TextId>
+        <Text>erste Linie</Text>
+    </Item>
+    <Item>
+        <TextId>1013</TextId>
+        <Text>Start in Spalte</Text>
+    </Item>
+    <Item>
+        <TextId>1014</TextId>
+        <Text>Anfangsspalte</Text>
+    </Item>
+    <Item>
+        <TextId>1015</TextId>
+        <Text>Objektkenner</Text>
+    </Item>
+    <Item>
+        <TextId>1016</TextId>
+        <Text>Kennerattribut</Text>
+    </Item>
+    <Item>
+        <TextId>1017</TextId>
+        <Text>Allright_ID</Text>
+    </Item>
+    <Item>
+        <TextId>1018</TextId>
+        <Text>IFC_ID</Text>
+    </Item>
+    <Item>
+        <TextId>1019</TextId>
+        <Text>Wählen...</Text>
+    </Item>
+<!-- for py file -->
+    <Item>
+        <TextId>2001</TextId>
+        <Text>Excel Report wird erstellt!</Text>
+    </Item>
+    <Item>
+        <TextId>2002</TextId>
+        <Text>Wählen...</Text>
+    </Item>
+</Element>

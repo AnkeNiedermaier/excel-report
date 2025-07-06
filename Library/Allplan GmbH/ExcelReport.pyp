@@ -24,56 +24,105 @@
                     <Visible>True</Visible>
                 </Parameter>
 
-<!-- Auswahl der Reportart -->
+<!-- selection of the report kind -->
             <Parameter>
                 <Name>Report_kind</Name>
-                <Text>Reportart</Text>
+                <TextId>1001</TextId>
+                <Text>Kind of Report</Text>
                 <Value>param</Value>
                 <ValueType>RadioButtonGroup</ValueType>
                 <Parameter>
                     <Name>param_report</Name>
-                    <Text>Parameter Report</Text>
+                    <TextId>1002</TextId>
+                    <Text>Objects parameter report</Text>
                     <Value>param</Value>
                     <ValueType>RadioButton</ValueType>
                 </Parameter>
                 <Parameter>
                     <Name>qto_report</Name>
-                    <Text>QTO Report</Text>
+                    <TextId>1003</TextId>
+                    <Text>Objects quantity report (QTO)</Text>
                     <Value>qto</Value>
                     <ValueType>RadioButton</ValueType>
                 </Parameter>
             </Parameter>
             <Parameter>
                 <Name>Expander</Name>
-                <Text>Exel Datei</Text>
+                <TextId>1004</TextId>
+                <Text>Exel file</Text>
                 <ValueType>Expander</ValueType>
                 <Value>False</Value>
-<!-- Auswahl der Excel Tabelle -->
+<!-- options for the Excel table -->
                 <Parameter>
-                    <Name>Row1</Name>
-                    <Text>Tabelle wählen</Text>
+                    <Name>Row10</Name>
+                    <TextId>1005</TextId>
+                    <Text>Excel tabel</Text>
                     <ValueType>Row</ValueType>
                     <Parameter>
-                        <Name>ReadFilePath</Name>
-                        <Text>Tabelle wählen</Text>
+                        <Name>tabel_handling</Name>
+                        <TextId>1005</TextId>
+                        <Text>Excel tabel</Text>
+                        <Value>create</Value>
+                        <ValueType>RadioButtonGroup</ValueType>
+                        <Parameter>
+                            <Name>create_new</Name>
+                            <TextId>1006</TextId>
+                            <Text>new</Text>
+                            <Value>create</Value>
+                            <ValueType>RadioButton</ValueType>
+                        </Parameter>
+                        <Parameter>
+                            <Name>extend_existing</Name>
+                            <TextId>1007</TextId>
+                            <Text>open</Text>
+                            <Value>use</Value>
+                            <ValueType>RadioButton</ValueType>
+                        </Parameter>
+                    </Parameter>
+                </Parameter>
+<!-- selection of the Excel tabel -->
+                <Parameter>
+                    <Name>Row1</Name>
+                    <TextId>1008</TextId>
+                    <Text>Select table</Text>
+                    <ValueType>Row</ValueType>
+                    <Parameter>
+                        <Name>read_tabel_path</Name>
+                        <TextId>1008</TextId>
+                        <Text>Select table</Text>
                         <Value></Value>
                         <ValueType>String</ValueType>
                         <ValueDialog>OpenFileDialog</ValueDialog>
                         <FileFilter>Excel file(*.xlsx)|*.xlsx|</FileFilter>
                         <FileExtension>xlsx</FileExtension>
+                        <Visible>tabel_handling == "use"</Visible>
                         <DefaultDirectories>std|prj</DefaultDirectories>
                     </Parameter>
                 </Parameter>
                 <Parameter>
+                    <Name>save_tabel_path</Name>
+                    <TextId>1009</TextId>
+                    <Text>Select path</Text>
+                    <Value></Value>
+                    <ValueType>String</ValueType>
+                    <ValueDialog>SaveFileDialog</ValueDialog>
+                    <FileFilter>Excel file(*.xlsx)|*.xlsx|</FileFilter>
+                    <FileExtension>xlsx</FileExtension>
+                    <Visible>tabel_handling == "create"</Visible>
+                    <DefaultDirectories>std|prj</DefaultDirectories>
+                </Parameter>
+                <Parameter>
                     <Name>Row2</Name>
-                    <Text>Tabellenblatt</Text>
+                    <TextId>1010</TextId>
+                    <Text>Table sheet</Text>
                     <ValueType>Row</ValueType>
                     <Parameter>
-                        <Name>ReadSheetName</Name>
+                        <Name>read_sheet_name</Name>
                         <Text>Sheet</Text>
                         <Value></Value>
                         <ValueList></ValueList>
                         <ValueType>StringComboBox</ValueType>
+                        <Visible>tabel_handling == "use"</Visible>
                     </Parameter>
                 </Parameter>
                 <Parameter>
@@ -83,22 +132,26 @@
                 </Parameter>
                 <Parameter>
                     <Name>Row3</Name>
-                    <Text>Start in Zeile</Text>
+                    <TextId>1011</TextId>
+                    <Text>Line to start</Text>
                     <ValueType>Row</ValueType>
                     <Parameter>
                         <Name>start_row</Name>
-                        <Text>erste Zeile</Text>
+                        <TextId>1012</TextId>
+                        <Text>first line</Text>
                         <Value>2</Value>
                         <ValueType>Integer</ValueType>
                     </Parameter>
                 </Parameter>
                 <Parameter>
                     <Name>Row4</Name>
-                    <Text>Start in Spalte</Text>
+                    <TextId>1013</TextId>
+                    <Text>Column to start</Text>
                     <ValueType>Row</ValueType>
                     <Parameter>
                         <Name>start_column</Name>
-                        <Text>Anfangsspalte</Text>
+                        <TextId>1014</TextId>
+                        <Text>first column</Text>
                         <Value>1</Value>
                         <ValueType>Integer</ValueType>
                     </Parameter>
@@ -113,13 +166,16 @@
                 <Visible>Report_kind =="param"</Visible>
                 <Parameter>
                     <Name>Row4</Name>
-                    <Text>Objektkenner</Text>
+                    <TextId>1015</TextId>
+                    <Text>Object identifier</Text>
                     <ValueType>Row</ValueType>
                     <Parameter>
                         <Name>object_ident</Name>
-                        <Text>Attribut Objektekenner</Text>
+                        <TextId>1016</TextId>
+                        <Text>Identifier attribute</Text>
                         <Value> </Value>
-                        <ValueList> |Allright_ID|IFC_ID|Freies Attribut</ValueList>
+                        <ValueList> |Allright_ID|IFC_ID|Choose...</ValueList>
+                        <ValueList_TextIds> |1017|1018|1019</ValueList_TextIds>
                         <ValueType>StringComboBox</ValueType>
                     </Parameter>
                 </Parameter>
@@ -133,7 +189,7 @@
                         <Value></Value>
                         <ValueType>AttributeId</ValueType>
                         <ValueDialog>AttributeSelectionInsert</ValueDialog>
-                        <Visible>object_ident == "Freies Attribut"</Visible>
+                        <Visible>object_ident == "Choose..." or object_ident == "Wählen..."</Visible>
                     </Parameter>
                 </Parameter>
                 <Parameter>
