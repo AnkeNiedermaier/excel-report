@@ -162,34 +162,30 @@ class ExcelReport(BaseInteractor):
             name:  name of the modified property
             value: new value
         """
-
-        if self.palette_service.modify_element_property(page, name, value):
-            self.palette_service.update_palette(-1, False)
+        palette_update_necessary = self.palette_service.modify_element_property(page, name, value)
 
         if name == "object_ident":
-            print("Objektkenner hat sich geändert")
             self.update_group_list(self.build_ele.AttributeIDList.value)
-        if name == "read_tabel_path":
-            #if self.build_ele.tabel_handling.value == "create":
-            #if self.report_worksheet_path != self.build_ele.read_tabel_path.value:
+
+        elif "read_tabel_path" in name:
             self.report_worksheet_path = self.build_ele.read_tabel_path.value
 
-            print ("Read tabel for report")
-            report_template = openpyxl.load_workbook(self.report_worksheet_path,
-                                                read_only  = True,
-                                                data_only  = False,
-                                                keep_links = False)
+            report_template = openpyxl.load_workbook(
+                self.report_worksheet_path,
+                read_only  = True,
+                data_only  = False,
+                keep_links = False)
 
             sheet_list = report_template.sheetnames
             sheet_list.insert(0,"")
             sheets = "|".join(sheet_list)
             self.ctrl_prop_util.set_value_list("read_sheet_name",sheets)
-            #return True
-            self.palette_service.update_palette(-1, False)
-                            
-        if name == "save_tabel_path":
-            #if self.report_worksheet_path != self.build_ele.save_tabel_path.value:
+
+        elif "save_tabel_path" in name:
             self.report_worksheet_path = self.build_ele.save_tabel_path.value
+
+        if palette_update_necessary:
+            self.palette_service.update_palette(-1, False)
 
 
     def set_active_palette_page_index(self, active_page_index: int):
@@ -248,7 +244,7 @@ class ExcelReport(BaseInteractor):
         self.attribut_selection = attrib_group_IDs
         doc = DocumentManager.get_instance().document
         possible_group_attribs = []
-        
+
         (local_str_table, global_str_table) = self.build_ele.get_string_tables()
         free_ident_attrib = local_str_table.get_string("2002", "Choose...")
 
@@ -288,7 +284,7 @@ class ExcelReport(BaseInteractor):
         if event_id == 1005:
             ret = AllplanUtil.ShowMessageBox (export_message, AllplanUtil.MB_OK)
             self.create_excel_tabel(self.build_ele)
-            
+
             print("Return value = " , ret, export_message, "= ", ret & AllplanUtil.MB_OKCANCEL)
 
     def on_cancel_function(self) -> bool:
@@ -369,7 +365,7 @@ class ExcelReport(BaseInteractor):
 
         object_list = self.all_object_list
         selected_object_list = AllplanEleAdapter.BaseElementAdapterList()
-        
+
         (local_str_table, global_str_table) = build_ele.get_string_tables()
         free_ident = local_str_table.get_string("2002", "Choose...")
 
