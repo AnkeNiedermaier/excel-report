@@ -197,33 +197,6 @@ class ExcelReport(BaseInteractor):
         Args:
             active_page_index: index of the active page, starting from 0
         """
-        # if self.build_ele.tabel_handling.value == "create":
-        #     if self.report_worksheet_path != self.build_ele.read_tabel_path.value:
-        #         self.report_worksheet_path = self.build_ele.read_tabel_path.value
-
-        #         print ("Read tabel for report")
-        #         report_template = openpyxl.load_workbook(self.report_worksheet_path,
-        #                                             read_only  = True,
-        #                                             data_only  = False,
-        #                                             keep_links = False)
-
-        #         sheet_list = report_template.sheetnames
-        #         sheet_list.insert(0,"")
-        #         sheets = "|".join(sheet_list)
-        #         self.ctrl_prop_util.set_value_list("read_sheet_name",sheets)
-        #         self.palette_service.update_palette(-1, False)
-        # else:
-        #   if self.report_worksheet_path != self.build_ele.save_tabel_path.value:
-        #         self.report_worksheet_path = self.build_ele.save_tabel_path.value
-
-
-        # if self.attribut_selection != self.build_ele.AttributeIDList.value:
-        #     self.attribut_selection = self.build_ele.AttributeIDList.value
-
-        #     print ("Select the parmeter attributes")
-
-        #     #self.build_ele.AttributeInfoList.value = self.build_ele.AttributeIDList.value
-        #     self.palette_service.update_palette(-1, False)
 
         if self.qto_selection != self.build_ele.QTOAttributeList.value:
             self.qto_selection = self.build_ele.QTOAttributeList.value

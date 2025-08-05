@@ -56,7 +56,7 @@
                 <Parameter>
                     <Name>Row10</Name>
                     <TextId>1005</TextId>
-                    <Text>Excel tabel</Text>
+                    <Text>Excel table</Text>
                     <ValueType>Row</ValueType>
                     <Parameter>
                         <Name>tabel_handling</Name>
@@ -133,12 +133,12 @@
                 <Parameter>
                     <Name>Row3</Name>
                     <TextId>1011</TextId>
-                    <Text>Line to start</Text>
+                    <Text>Row to start</Text>
                     <ValueType>Row</ValueType>
                     <Parameter>
                         <Name>start_row</Name>
                         <TextId>1012</TextId>
-                        <Text>first line</Text>
+                        <Text>first row</Text>
                         <Value>2</Value>
                         <ValueType>Integer</ValueType>
                     </Parameter>
@@ -157,9 +157,10 @@
                     </Parameter>
                 </Parameter>
             </Parameter>
-<!-- Festlegung Attribute für Parameter report -->
+<!-- determin attributes for parameter report -->
             <Parameter>
                 <Name>Expander</Name>
+                <TextId>1033</TextId>
                 <Text>Parameter</Text>
                 <ValueType>Expander</ValueType>
                 <Value>False</Value>
@@ -181,7 +182,8 @@
                 </Parameter>
                 <Parameter>
                     <Name>Row5</Name>
-                    <Text>Kennerattribut</Text>
+                    <TextId>1016</TextId>
+                    <Text>Identifier attribute</Text>
                     <ValueType>Row</ValueType>
                     <Parameter>
                         <Name>object_ident_ID</Name>
@@ -189,7 +191,7 @@
                         <Value></Value>
                         <ValueType>AttributeId</ValueType>
                         <ValueDialog>AttributeSelectionInsert</ValueDialog>
-                        <Visible>object_ident == "Choose..." or object_ident == "Wählen..."</Visible>
+                        <Visible>object_ident == __StringTable.get_string(1019, "Choose...")</Visible>
                     </Parameter>
                 </Parameter>
                 <Parameter>
@@ -198,7 +200,8 @@
                 </Parameter>
                 <Parameter>
                     <Name>Report_attribs</Name>
-                    <Text>Reportparameter</Text>
+                    <TextId>1020</TextId>
+                    <Text>Report parameters</Text>
                     <ValueType>Text</ValueType>
                 </Parameter>
                 <Parameter>
@@ -215,11 +218,13 @@
                 </Parameter>
                 <Parameter>
                     <Name>Row10</Name>
-                    <Text>Gruppierung nach</Text>
+                    <TextId>1021</TextId>
+                    <Text>Group by</Text>
                     <ValueType>Row</ValueType>
                     <Parameter>
                         <Name>group_attrib</Name>
-                        <Text>Gruppierung</Text>
+                        <TextId>1022</TextId>
+                        <Text>Grouping</Text>
                         <Value></Value>
                         <ValueList></ValueList>
                         <ValueType>StringComboBox</ValueType>
@@ -227,6 +232,7 @@
                 </Parameter>
                 <Parameter>
                     <Name>AttributeInfoList</Name>
+                    <TextId>1023</TextId>
                     <Text>Attribute IDs</Text>
                     <Value>[]</Value>
                     <ValueType>Integer</ValueType>
@@ -235,16 +241,18 @@
                     <Visible>len(AttributeIDList) &gt; 1</Visible>
                 </Parameter>
             </Parameter>
-    <!-- Festlegung Parameter für Mengen report -->
+<!-- determin parameters for QTO report -->
             <Parameter>
                 <Name>Expander</Name>
-                <Text>QTO Parameter</Text>
+                <TextId>1024</TextId>
+                <Text>QTO parameter</Text>
                 <ValueType>Expander</ValueType>
                 <Value>False</Value>
                 <Visible>Report_kind =="qto"</Visible>
                 <Parameter>
                     <Name>Row15</Name>
-                    <Text>QTO Attribut</Text>
+                    <TextId>1025</TextId>
+                    <Text>QTO attribut</Text>
                     <ValueType>Row</ValueType>
                     <Parameter>
                         <Name>qto_ident_attrib</Name>
@@ -257,12 +265,14 @@
                 </Parameter>
                 <Parameter>
                     <Name>Sep</Name>
-                    <Text>Mengenparameter</Text>
+                    <TextId>1026</TextId>
+                    <Text>quantity parameter</Text>
                     <ValueType>Separator</ValueType>
                 </Parameter>
                 <Parameter>
                     <Name>QTO_attribs</Name>
-                    <Text>Mengenparameter</Text>
+                    <TextId>1026</TextId>
+                    <Text>Quantity parameter</Text>
                     <ValueType>Text</ValueType>
                 </Parameter>
                 <Parameter>
@@ -274,43 +284,47 @@
                     <ValueListStartRow>1</ValueListStartRow>
                 </Parameter>
             </Parameter>
-<!-- Auswahl Objekte -->
+<!-- object selection -->
             <Parameter>
                 <Name>Expander</Name>
-                <Text>Elementauswahl</Text>
+                <TextId>1027</TextId>
+                <Text>Element selection</Text>
                 <ValueType>Expander</ValueType>
                 <Value>False</Value>
                 <Parameter>
                     <Name>Row2</Name>
-                    <Text>Objekte</Text>
+                    <TextId>1028</TextId>
+                    <Text>Objects</Text>
                     <ValueType>Row</ValueType>
                     <Parameter>
                         <Name>element_selection</Name>
-                        <Text>auswählen</Text>
+                        <TextId>1029</TextId>
+                        <Text>select</Text>
                         <EventId>1002</EventId>
                         <ValueType>Button</ValueType>
                     </Parameter>
                 </Parameter>
             </Parameter>
-<!-- Erstellung der Tabelle -->
+<!-- create the table -->
             <Parameter>
                 <Name>Expander</Name>
-                <Text>Erstellung</Text>
+                <TextId>1030</TextId>
+                <Text>Creation</Text>
                 <ValueType>Expander</ValueType>
                 <Value>False</Value>
                 <Parameter>
                     <Name>Row48</Name>
-                    <Text>Excel Report</Text>
+                    <TextId>1031</TextId>
+                    <Text>Excel report</Text>
                     <ValueType>Row</ValueType>
                     <Parameter>
                         <Name>create_excel_report</Name>
-                        <Text>erstellen</Text>
+                        <TextId>1032</TextId>
+                        <Text>create</Text>
                         <EventId>1005</EventId>
                         <ValueType>Button</ValueType>
                     </Parameter>
-
                 </Parameter>
-
             </Parameter>
     </Page>
 </Element>

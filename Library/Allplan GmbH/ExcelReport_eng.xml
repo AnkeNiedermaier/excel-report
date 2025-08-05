@@ -4,67 +4,67 @@
 <!-- for pyp file -->
     <Item>
         <TextId>1001</TextId>
-        <Text>Report Art</Text>
+        <Text>Kind of Report</Text>
     </Item>
     <Item>
         <TextId>1002</TextId>
-        <Text>Report Objektparameter</Text>
+        <Text>Objects parameter report</Text>
     </Item>
     <Item>
         <TextId>1003</TextId>
-        <Text>Report Objektmengen (QTO)</Text>
+        <Text>Objects quantity report (QTO)</Text>
     </Item>
     <Item>
         <TextId>1004</TextId>
-        <Text>Excel Datei</Text>
+        <Text>Excel file</Text>
     </Item>
     <Item>
         <TextId>1005</TextId>
-        <Text>Excel Tabelle</Text>
+        <Text>Excel table</Text>
     </Item>
     <Item>
         <TextId>1006</TextId>
-        <Text>neu</Text>
+        <Text>new</Text>
     </Item>
     <Item>
         <TextId>1007</TextId>
-        <Text>öffnen</Text>
+        <Text>open</Text>
     </Item>
     <Item>
         <TextId>1008</TextId>
-        <Text>Tabelle wählen</Text>
+        <Text>Select table</Text>
     </Item>
     <Item>
         <TextId>1009</TextId>
-        <Text>Pfad wählen</Text>
+        <Text>Select path</Text>
     </Item>
     <Item>
         <TextId>1010</TextId>
-        <Text>Tabellenblatt</Text>
+        <Text>Table sheet</Text>
     </Item>
     <Item>
         <TextId>1011</TextId>
-        <Text>Start in Zeile</Text>
+        <Text>Row to start</Text>
     </Item>
     <Item>
         <TextId>1012</TextId>
-        <Text>erste Linie</Text>
+        <Text>first row</Text>
     </Item>
     <Item>
         <TextId>1013</TextId>
-        <Text>Start in Spalte</Text>
+        <Text>Column to start</Text>
     </Item>
     <Item>
         <TextId>1014</TextId>
-        <Text>Anfangsspalte</Text>
+        <Text>first column</Text>
     </Item>
     <Item>
         <TextId>1015</TextId>
-        <Text>Objektkenner</Text>
+        <Text>Object identifier</Text>
     </Item>
     <Item>
         <TextId>1016</TextId>
-        <Text>Kennerattribut</Text>
+        <Text>Identifier attribute</Text>
     </Item>
     <Item>
         <TextId>1017</TextId>
@@ -76,19 +76,19 @@
     </Item>
     <Item>
         <TextId>1019</TextId>
-        <Text>Wählen...</Text>
+        <Text>Choose...</Text>
     </Item>
     <Item>
         <TextId>1020</TextId>
-        <Text>Reportparameter</Text>
+        <Text>Report parameter</Text>
     </Item>
     <Item>
         <TextId>1021</TextId>
-        <Text>Gruppieren nach</Text>
+        <Text>Group by</Text>
     </Item>
     <Item>
         <TextId>1022</TextId>
-        <Text>Gruppierung</Text>
+        <Text>Grouping</Text>
     </Item>
     <Item>
         <TextId>1023</TextId>
@@ -96,39 +96,39 @@
     </Item>
     <Item>
         <TextId>1024</TextId>
-        <Text>QTO Parameter</Text>
+        <Text>QTO parameter</Text>
     </Item>
     <Item>
         <TextId>1025</TextId>
-        <Text>QTO Attribut</Text>
+        <Text>QTO attribut</Text>
     </Item>
     <Item>
         <TextId>1026</TextId>
-        <Text>Mengenparameter</Text>
+        <Text>Quantity parameter</Text>
     </Item>
     <Item>
         <TextId>1027</TextId>
-        <Text>Elementauswahl</Text>
+        <Text>Element selection</Text>
     </Item>
     <Item>
         <TextId>1028</TextId>
-        <Text>Objekte</Text>
+        <Text>Objects</Text>
     </Item>
     <Item>
         <TextId>1029</TextId>
-        <Text>auswählen</Text>
+        <Text>select</Text>
     </Item>
     <Item>
         <TextId>1030</TextId>
-        <Text>Erstellung</Text>
+        <Text>Creation</Text>
     </Item>
     <Item>
         <TextId>1031</TextId>
-        <Text>Excel Report</Text>
+        <Text>Excel report</Text>
     </Item>
     <Item>
         <TextId>1032</TextId>
-        <Text>erstellen</Text>
+        <Text>create</Text>
     </Item>
     <Item>
         <TextId>1033</TextId>
