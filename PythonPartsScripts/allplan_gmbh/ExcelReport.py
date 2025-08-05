@@ -28,65 +28,66 @@ from Utils import LibraryBitmapPreview
 print('Load ExcelReport.py')
 
 
-def check_allplan_version(_build_ele: BuildingElement,
-                          _version  : str) -> bool:
+def check_allplan_version(build_ele: BuildingElement,
+                          version  : str) -> bool:
     """ Check the current Allplan version
 
     Args:
-        _build_ele: building element with the parameter properties
-        _version:   the current Allplan version
+        build_ele: building element with the parameter properties
+        version:   the current Allplan version
 
     Returns:
         True
     """
 
     # Support all versions
+    del (build_ele, version)
     return True
 
 
-def create_preview(_build_ele: BuildingElement,
-                   _doc      : AllplanEleAdapter.DocumentAdapter) -> CreateElementResult:
+def create_preview(build_ele: BuildingElement,
+                   doc      : AllplanEleAdapter.DocumentAdapter) -> CreateElementResult:
     """ Creation of the element preview
 
     Args:
-        _build_ele: building element with the parameter properties
-        _doc:       document of the Allplan drawing files
+        build_ele: building element with the parameter properties
+        doc:       document of the Allplan drawing files
 
     Returns:
         created elements for the preview
     """
-
+    del (build_ele, doc)
     return CreateElementResult(LibraryBitmapPreview.create_library_bitmap_preview( \
                                AllplanSettings.AllplanPaths.GetPythonPartsEtcPath() +
                                r"Library\PythonParts\Wood_Construction.png"))
 
 def create_interactor(coord_input              : AllplanIFW.CoordinateInput,
-                      _pyp_path                : str,
-                      _global_str_table_service: StringTableService,
+                      pyp_path                : str,
+                      global_str_table_service: StringTableService,
                       build_ele_list           : list[BuildingElement],
                       build_ele_composite      : BuildingElementComposite,
                       control_props_list       : list[BuildingElementControlProperties],
-                      _modify_uuid_list        : list) -> object:
+                      modify_uuid_list        : list) -> object:
     """ Create the interactor
 
     Args:
         coord_input:               API object for the coordinate input, element selection, ... in the Allplan view
-        _pyp_path:                 path of the pyp file
-        _global_str_table_service: global string table service
+        pyp_path:                 path of the pyp file
+        global_str_table_service: global string table service
         build_ele_list:            list with the building elements
         build_ele_composite:       building element composite with the building element constraints
         control_props_list:        control properties list
-        _modify_uuid_list:         list with the UUIDs of the modified elements
+        modify_uuid_list:         list with the UUIDs of the modified elements
 
     Returns:
           Created interactor object
     """
-
+    del (pyp_path, global_str_table_service, modify_uuid_list)
     return ExcelReport(coord_input, build_ele_list, build_ele_composite, control_props_list)
 
 
 class ExcelReport(BaseInteractor):
-    """ Definition of class Wood_Construction
+    """ Definition of class Excel report
     """
 
     def __init__(self,
@@ -188,7 +189,9 @@ class ExcelReport(BaseInteractor):
             self.palette_service.update_palette(-1, False)
 
 
-    def set_active_palette_page_index(self, active_page_index: int):
+    def set_active_palette_page_index(self,
+                                      active_page_index: int):
+
         """ Handles the event of changing the page in the property palette and a dialog
         (e.g. open file dialog) being closed.
 
@@ -207,12 +210,24 @@ class ExcelReport(BaseInteractor):
         attrib_group_IDs = set(self.build_ele.AttributeIDList.value)
 
         if self.attribut_selection != attrib_group_IDs:
-            print("Liste mit ausgewählten attributen hat sich geändert")
+            print("the choosen attributes list has changed")
             self.update_group_list(attrib_group_IDs)
 
+        del active_page_index
 
     def update_group_list(self,
                           attrib_group_IDs  :set[int]):
+        
+
+        """ updates the list of attributes in the pulldown from which the
+            grouping attribut for the report can be choosen
+
+            update is executed each time when a new attribut is choosen
+            or an already choosen one is removed
+
+        Args:
+            attrib_group_IDs: list of the attribut IDs choosen as report parameters
+        """
 
         self.attribut_selection = attrib_group_IDs
         doc = DocumentManager.get_instance().document
@@ -240,6 +255,8 @@ class ExcelReport(BaseInteractor):
         self.ctrl_prop_util.set_value_list("group_attrib",group_name)
         self.palette_service.update_palette(-1, False)
 
+        del global_str_table
+
     def on_control_event(self,
                          event_id: int):
         """ Handles on control event
@@ -259,6 +276,8 @@ class ExcelReport(BaseInteractor):
             self.create_excel_tabel(self.build_ele)
 
             print("Return value = " , ret, export_message, "= ", ret & AllplanUtil.MB_OKCANCEL)
+
+        del global_str_table
 
     def on_cancel_function(self) -> bool:
         """ Handles the cancel function event (e.g. by ESC, ...)
@@ -307,7 +326,6 @@ class ExcelReport(BaseInteractor):
         Returns:
             True/False for success.
         """
-
         if self.interactor_input_mode == self.InteractorInputMode.ELEMENT_SELECTION and self.post_element_selection:
             self.selected_elements = self.post_element_selection.GetSelectedElements(self.coord_input.GetInputViewDocument())
 
@@ -327,14 +345,23 @@ class ExcelReport(BaseInteractor):
         if self.coord_input.IsMouseMove(mouse_msg):
             return True
 
-        #self.start_element_selection()
-
         self.palette_service.update_palette(-1, True)
 
         return True
 
     def create_excel_tabel (self,
                             build_ele   : BuildingElement) -> bool:
+        """ creating the Excel table with the selected attributes and
+            parameters either in an already existing file or in a
+            new one. the values for the parameters of the selected object
+            are writen row by row - one row for each object 
+
+        Args:
+            build_ele: building element with the parameter properties
+
+        Returns:
+            True/False for success.
+        """
 
         object_list = self.all_object_list
         selected_object_list = AllplanEleAdapter.BaseElementAdapterList()
@@ -399,12 +426,6 @@ class ExcelReport(BaseInteractor):
         report_sheet = report_file[excel_sheet]
 
 
-        non_formating_border = excel_style.Border()
-        non_formating_font = excel_style.Font()
-        non_formating_color = excel_style.PatternFill(fill_type = None)
-
-
-
         #----------------- find template headers
 
         cell_header_font = excel_style.Font(bold = True, size = 14)
@@ -423,7 +444,7 @@ class ExcelReport(BaseInteractor):
             column_header_list.append("Objekt")
 
             for attrib_ID in selected_attributes:
-                if attrib_ID != 0 and attrib_ID != None:
+                if attrib_ID != 0 and attrib_ID is not None:
                     attrib_name = AllplanBaseEle.AttributeService.GetAttributeName(doc, attrib_ID)
                     column_header_list.append(str(attrib_name))
 
@@ -437,7 +458,7 @@ class ExcelReport(BaseInteractor):
             column_header_list.append(str(qto_attrib_name))
 
             for qto_attrib_ID in choosen_qto_attributes:
-                if qto_attrib_ID != 0 and qto_attrib_ID != None:
+                if qto_attrib_ID != 0 and qto_attrib_ID is not None:
                     param_name = AllplanBaseEle.AttributeService.GetAttributeName(doc, qto_attrib_ID)
                     column_header_list.append(str(param_name))
 
@@ -457,7 +478,7 @@ class ExcelReport(BaseInteractor):
         #----------------- Filter relevant objects
 
         for single_object in object_list:
-            if single_object.IsInActiveLayer()== True:
+            if single_object.IsInActiveLayer() is True:
                 selected_object_list.append(single_object)
             else:
                 continue
@@ -486,7 +507,7 @@ class ExcelReport(BaseInteractor):
                 for attrib_pair in objects_attributes:
                     if attrib_pair[0] == object_ident_ID:
                         object_ident_value = attrib_pair[1]
-                        if object_ident_value == None:
+                        if object_ident_value is None:
                             object_ident_value = "allgemeines Objekt"
 
                     if attrib_pair[0] == group_ID:
@@ -513,7 +534,7 @@ class ExcelReport(BaseInteractor):
             for existing_value in existing_grouping_values:
                 checking_value = existing_value
 
-                if existing_value == None or existing_value == 0:
+                if existing_value is None or existing_value == 0:
                     checking_value = "-"
 
                 for single_object in objects_attrib_list:
@@ -543,7 +564,7 @@ class ExcelReport(BaseInteractor):
 
 
                 for single_parameter in selected_attributes:
-                    if single_parameter != 0 and single_parameter != None:
+                    if single_parameter != 0 and single_parameter is not None:
 
                         if single_parameter in parameter_dict.keys():
                             param_value = parameter_dict.get(single_parameter)
@@ -553,7 +574,7 @@ class ExcelReport(BaseInteractor):
                             if attrib_type == True:
                                 param_value = f"{((round(param_value,3)*1000)/1000):.3f}"
 
-                            if param_value == 0 or param_value == None:
+                            if param_value == 0 or param_value is None:
                                 param_value = "-"
                         else:
                             param_value = "-"
@@ -580,7 +601,7 @@ class ExcelReport(BaseInteractor):
                 for param_pair in qto_attributes:
                     if param_pair[0] == param_attribut:
                         objects_param_value = param_pair[1]
-                        if objects_param_value != None and objects_param_value != 0 and objects_param_value != "-":
+                        if objects_param_value is not None and objects_param_value != 0 and objects_param_value != "-":
                             qto_object_list.append((objects_param_value, selected_qto_object))
                             param_values_list.append(objects_param_value)
 
@@ -607,7 +628,7 @@ class ExcelReport(BaseInteractor):
                 for param_quantity in param_quantity_list:
                     if param_quantity[0] == single_possible_value:
                         relevant_param = param_quantity[1]
-                        if relevant_param not in possible_value_dict.keys():
+                        if relevant_param not in possible_value_dict:
                             new_quantity = param_quantity[2]
                             possible_value_dict[relevant_param] = new_quantity
                         else:
@@ -640,7 +661,7 @@ class ExcelReport(BaseInteractor):
 
                             q_attrib_type = isinstance(quantity_value, float)
 
-                            if q_attrib_type == True:
+                            if q_attrib_type is True:
                                 quantity_value = f"{((round(quantity_value,3)*1000)/1000):.3f}"
 
                             if quantity_value == 0 or quantity_value is None:
@@ -658,16 +679,7 @@ class ExcelReport(BaseInteractor):
 
                 content_row += 1
 
-
-        #AllplanBaseEle.CreateElements(doc, AllplanGeo.Matrix3D(), model_elem_list, [], None)
-
         report_file.save(excel_path)
         report_file.close()
-
-
-
-
-
-
-
+        del global_str_table
         return True
