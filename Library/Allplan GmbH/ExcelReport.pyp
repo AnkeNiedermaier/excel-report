@@ -26,7 +26,7 @@
 
 <!-- selection of the report kind -->
             <Parameter>
-                <Name>Report_kind</Name>
+                <Name>report_kind</Name>
                 <TextId>1001</TextId>
                 <Text>Kind of Report</Text>
                 <Value>param</Value>
@@ -164,7 +164,7 @@
                 <Text>Parameter</Text>
                 <ValueType>Expander</ValueType>
                 <Value>False</Value>
-                <Visible>Report_kind =="param"</Visible>
+                <Visible>report_kind =="param"</Visible>
                 <Parameter>
                     <Name>Row4</Name>
                     <TextId>1015</TextId>
@@ -248,7 +248,7 @@
                 <Text>QTO parameter</Text>
                 <ValueType>Expander</ValueType>
                 <Value>False</Value>
-                <Visible>Report_kind =="qto"</Visible>
+                <Visible>report_kind =="qto"</Visible>
                 <Parameter>
                     <Name>Row15</Name>
                     <TextId>1025</TextId>

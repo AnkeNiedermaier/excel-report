@@ -140,17 +140,19 @@ class ExcelReport(BaseInteractor):
     def start_element_selection(self):
         """ start the element selection
         """
-
+        (local_str_table, global_str_table) = self.build_ele.get_string_tables()
+        selection_prompt = local_str_table.get_string("2003", "Select objects!")
+        
         sel_setting = AllplanIFW.ElementSelectFilterSetting()
 
         self.post_element_selection = AllplanIFW.PostElementSelection()
 
-        AllplanIFW.InputFunctionStarter.StartElementSelect("Objekte wählen!",
+        AllplanIFW.InputFunctionStarter.StartElementSelect(selection_prompt,
                                                            sel_setting, self.post_element_selection, True)
 
         self.interactor_input_mode = self.InteractorInputMode.ELEMENT_SELECTION
 
-        #self.build_ele.IsInSelection.value = True
+        del global_str_table
 
     def modify_element_property(self,
                                 page : int,
@@ -217,7 +219,6 @@ class ExcelReport(BaseInteractor):
 
     def update_group_list(self,
                           attrib_group_IDs  :set[int]):
-        
 
         """ updates the list of attributes in the pulldown from which the
             grouping attribut for the report can be choosen
@@ -375,7 +376,7 @@ class ExcelReport(BaseInteractor):
         #----------------- Extract palette parameter values
         #----------------- For both kinds of report
 
-        kind_of_report = build_ele.Report_kind.value
+        kind_of_report = build_ele.report_kind.value
 
         #-------- create or write
         excel_source = build_ele.tabel_handling.value
@@ -571,7 +572,7 @@ class ExcelReport(BaseInteractor):
 
                             attrib_type = isinstance(param_value, float)
 
-                            if attrib_type == True:
+                            if attrib_type is True:
                                 param_value = f"{((round(param_value,3)*1000)/1000):.3f}"
 
                             if param_value == 0 or param_value is None:

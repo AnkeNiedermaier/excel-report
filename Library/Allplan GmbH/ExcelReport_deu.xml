@@ -137,10 +137,14 @@
 <!-- for py file -->
     <Item>
         <TextId>2001</TextId>
-        <Text>Excel Report wird erstellt!</Text>
+        <Text>"Excel report is created!</Text>
     </Item>
     <Item>
         <TextId>2002</TextId>
         <Text>Wählen...</Text>
+    </Item>
+    <Item>
+        <TextId>2003</TextId>
+        <Text>Objekte wählen!</Text>
     </Item>
 </Element>
